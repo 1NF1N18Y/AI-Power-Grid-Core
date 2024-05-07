@@ -57,7 +57,7 @@ public:
         SetNull();
     }
 
-    ADD_SERIALIZE_METHODS;
+    SERIALIZE_METHODS(CBlockHeader, obj) { READWRITE(obj.nVersion, obj.hashPrevBlock, obj.hashMerkleRoot, obj.nTime, obj.nBits, obj.nNonce); }
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
@@ -256,7 +256,11 @@ public:
         *((CBlockHeader*)this) = header;
     }
 
-    ADD_SERIALIZE_METHODS;
+    SERIALIZE_METHODS(CBlock, obj)
+    {
+        READWRITEAS(CBlockHeader, obj);
+        READWRITE(obj.vtx);
+    }
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
@@ -309,7 +313,13 @@ struct CBlockLocator
 
     explicit CBlockLocator(const std::vector<uint256>& vHaveIn) : vHave(vHaveIn) {}
 
-    ADD_SERIALIZE_METHODS;
+    SERIALIZE_METHODS(CBlockLocator, obj)
+    {
+        int nVersion = s.GetVersion();
+        if (!(s.GetType() & SER_GETHASH))
+            READWRITE(nVersion);
+        READWRITE(obj.vHave);
+    }
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
@@ -344,7 +354,15 @@ public:
         *((CBlockHeader*)this) = header;
     }
 
-    ADD_SERIALIZE_METHODS;
+    SERIALIZE_METHODS(CKAWPOWInput, obj)
+    {
+        READWRITE(obj.nVersion);
+        READWRITE(obj.hashPrevBlock);
+        READWRITE(obj.hashMerkleRoot);
+        READWRITE(obj.nTime);
+        READWRITE(obj.nBits);
+        READWRITE(obj.nHeight);
+    }
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
@@ -356,5 +374,6 @@ public:
         READWRITE(nHeight);
     }
 };
+
 
 #endif // BITCOIN_PRIMITIVES_BLOCK_H
