@@ -19,6 +19,10 @@
 
 #include <assert.h>
 
+//TODO: remove these
+extern double algoHashTotal[16];
+extern int algoHashHits[16];
+
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     CMutableTransaction txNew;
