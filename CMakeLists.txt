@@ -67,6 +67,9 @@ file(GLOB SOURCE_FILES
         src/crypto/*.c
         src/crypto/*.cpp
         src/crypto/*.h
+        src/siphash/*.c
+        src/siphash/*.cpp
+        src/siphash/*.h
         src/crypto-kawpow/*.c
         src/crypto-kawpow/*.cpp
         src/crypto-kawpow/*.h
