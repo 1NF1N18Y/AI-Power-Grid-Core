@@ -7,7 +7,7 @@
 #include <set>
 
 #include <blockfilter.h>
-#include <crypto/siphash.h>
+#include <siphash/siphash.h>
 #include <hash.h>
 #include <primitives/transaction.h>
 #include <script/script.h>

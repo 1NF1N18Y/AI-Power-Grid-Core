@@ -12,7 +12,7 @@
 #include <chainparams.h>
 #include <compat.h>
 #include <fs.h>
-#include <crypto/siphash.h>
+#include <siphash/siphash.h>
 #include <hash.h>
 #include <i2p.h>
 #include <limitedmap.h>

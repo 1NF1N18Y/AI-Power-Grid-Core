@@ -11,7 +11,7 @@
 #include <crypto/sha256.h>
 #include <crypto/sha3.h>
 #include <crypto/sha512.h>
-#include <crypto/siphash.h>
+#include <siphash/siphash.h>
 #include <hash.h>
 #include <random.h>
 #include <uint256.h>

@@ -11,7 +11,7 @@
 
 #include <attributes.h>
 #include <compat.h>
-#include <crypto/siphash.h>
+#include <siphash/siphash.h>
 #include <prevector.h>
 #include <random.h>
 #include <serialize.h>

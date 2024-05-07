@@ -7,7 +7,7 @@
 #include <consensus/validation.h>
 #include <chainparams.h>
 #include <crypto/sha256.h>
-#include <crypto/siphash.h>
+#include <siphash/siphash.h>
 #include <random.h>
 #include <streams.h>
 #include <txmempool.h>
