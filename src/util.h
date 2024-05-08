@@ -9,8 +9,8 @@
  * Server/client environment: argument handling, config file parsing,
  * logging, thread wrappers, startup time
  */
-#ifndef AIPG_UTIL_H
-#define AIPG_UTIL_H
+#ifndef BITCOIN_UTIL_H
+#define BITCOIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
 #include "config/bitcoin-config.h"
@@ -342,7 +342,7 @@ void TraceThread(const char *name, Callable func)
         func();
         LogPrintf("%s thread exit\n", name);
     }
-    catch (const boost::thread_interrupted &)
+    catch (const boost::thread_interrupted&)
     {
         LogPrintf("%s thread interrupt\n", name);
         throw;

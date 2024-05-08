@@ -5,12 +5,12 @@
 
 #include <primitives/block.h>
 #include "hash.h"
-#include "crypto/common.h"
-#include "crypto/hmac_sha512.h"
+#include "crypto-kawpow/common.h"
+#include "crypto-kawpow/hmac_sha512.h"
 #include "pubkey.h"
 #include "util.h"
 
-#include <crypto/ethash/include/ethash/progpow.hpp>
+#include <crypto-kawpow/ethash/include/ethash/progpow.hpp>
 
 inline uint32_t ROTL32(uint32_t x, int8_t r)
 {
