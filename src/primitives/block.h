@@ -20,25 +20,9 @@
  * in the block is a special one that creates a new coin owned by the creator
  * of the block.
  */
-
-extern uint32_t nKAWPOWActivationTime;
-
-class BlockNetwork
-{
-public:
-    BlockNetwork();
-    bool fOnRegtest;
-    bool fOnTestnet;
-    void SetNetwork(const std::string& network);
-};
-
-extern BlockNetwork bNetwork;
-
-
 class CBlockHeader
 {
 public:
-
     // header
     int32_t nVersion;
     uint256 hashPrevBlock;
@@ -47,33 +31,12 @@ public:
     uint32_t nBits;
     uint32_t nNonce;
 
-    //KAAAWWWPOW data
-    uint32_t nHeight;
-    uint64_t nNonce64;
-    uint256 mix_hash;
-
     CBlockHeader()
     {
         SetNull();
     }
 
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITE(this->nVersion);
-        READWRITE(hashPrevBlock);
-        READWRITE(hashMerkleRoot);
-        READWRITE(nTime);
-        READWRITE(nBits);
-        if (nTime < nKAWPOWActivationTime) {
-            READWRITE(nNonce);
-        } else {
-            READWRITE(nHeight);
-            READWRITE(nNonce64);
-            READWRITE(mix_hash);
-        }
-    }
+    SERIALIZE_METHODS(CBlockHeader, obj) { READWRITE(obj.nVersion, obj.hashPrevBlock, obj.hashMerkleRoot, obj.nTime, obj.nBits, obj.nNonce); }
 
     void SetNull()
     {
@@ -83,10 +46,6 @@ public:
         nTime = 0;
         nBits = 0;
         nNonce = 0;
-
-        nNonce64 = 0;
-        nHeight = 0;
-        mix_hash.SetNull();
     }
 
     bool IsNull() const
@@ -95,17 +54,6 @@ public:
     }
 
     uint256 GetHash() const;
-    uint256 GetX16RHash() const;
-    uint256 GetX16RV2Hash() const;
-
-    uint256 GetHashFull(uint256& mix_hash) const;
-    uint256 GetKAWPOWHeaderHash() const;
-    std::string ToString() const;
-
-    /// Use for testing algo switch
-    uint256 TestTiger() const;
-    uint256 TestSha512() const;
-    uint256 TestGost512() const;
 
     int64_t GetBlockTime() const
     {
@@ -244,7 +192,6 @@ public:
     // memory only
     mutable bool fChecked;
 
-
     CBlock()
     {
         SetNull();
@@ -253,15 +200,13 @@ public:
     CBlock(const CBlockHeader &header)
     {
         SetNull();
-        *((CBlockHeader*)this) = header;
+        *(static_cast<CBlockHeader*>(this)) = header;
     }
 
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITE(*(CBlockHeader*)this);
-        READWRITE(vtx);
+    SERIALIZE_METHODS(CBlock, obj)
+    {
+        READWRITEAS(CBlockHeader, obj);
+        READWRITE(obj.vtx);
     }
 
     void SetNull()
@@ -280,18 +225,8 @@ public:
         block.nTime          = nTime;
         block.nBits          = nBits;
         block.nNonce         = nNonce;
-
-        // KAWPOW
-        block.nHeight        = nHeight;
-        block.nNonce64       = nNonce64;
-        block.mix_hash       = mix_hash;
         return block;
     }
-
-    // void SetPrevBlockHash(uint256 prevHash) 
-    // {
-    //     block.hashPrevBlock = prevHash;
-    // }
 
     std::string ToString() const;
 };
@@ -309,14 +244,12 @@ struct CBlockLocator
 
     explicit CBlockLocator(const std::vector<uint256>& vHaveIn) : vHave(vHaveIn) {}
 
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
+    SERIALIZE_METHODS(CBlockLocator, obj)
+    {
         int nVersion = s.GetVersion();
         if (!(s.GetType() & SER_GETHASH))
             READWRITE(nVersion);
-        READWRITE(vHave);
+        READWRITE(obj.vHave);
     }
 
     void SetNull()
@@ -327,33 +260,6 @@ struct CBlockLocator
     bool IsNull() const
     {
         return vHave.empty();
-    }
-};
-
-
-/**
- * Custom serializer for CBlockHeader that omits the nNonce and mixHash, for use
- * as input to ProgPow.
- */
-class CKAWPOWInput : private CBlockHeader
-{
-public:
-    CKAWPOWInput(const CBlockHeader &header)
-    {
-        CBlockHeader::SetNull();
-        *((CBlockHeader*)this) = header;
-    }
-
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITE(this->nVersion);
-        READWRITE(hashPrevBlock);
-        READWRITE(hashMerkleRoot);
-        READWRITE(nTime);
-        READWRITE(nBits);
-        READWRITE(nHeight);
     }
 };
 
