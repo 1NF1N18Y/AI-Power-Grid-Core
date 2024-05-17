@@ -222,6 +222,18 @@ unsigned int MurmurHash3(unsigned int nHashSeed, Span<const unsigned char> vData
 
 void BIP32Hash(const ChainCode &chainCode, unsigned int nChild, unsigned char header, const unsigned char data[32], unsigned char output[64]);
 
+
+inline int GetHashSelection(const uint256 PrevBlockHash, int index) {
+    assert(index >= 0);
+    assert(index < 16);
+
+    #define START_OF_LAST_16_NIBBLES_OF_HASH 48
+    int hashSelection = PrevBlockHash.GetNibble(START_OF_LAST_16_NIBBLES_OF_HASH + index);
+    return(hashSelection);
+}
+
+
+
 /* ----------- Dash Hash ------------------------------------------------ */
 template<typename T1>
 inline uint256 HashX11(const T1 pbegin, const T1 pend)
