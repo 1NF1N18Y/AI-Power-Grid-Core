@@ -268,14 +268,14 @@ uint32_t nGenesisTime = 1701429301;
             genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e00ffff, 4, 5000 * COIN);
             genesis.hashPrevBlock = TempHashHolding;
 			// Depending on when the timestamp is on the genesis block. You will need to use GetX16RHash or GetX16RV2Hash. Replace GetHash() with these below
-            consensus.hashGenesisBlock = genesis.GetX11Hash();
+            consensus.hashGenesisBlock = genesis.GetHash();
 
             arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
             if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
                 BestBlockHash = consensus.hashGenesisBlock;
                 std::cout << "CHOOSE: consensus.hashGenesisBlock.GetHex(): " << consensus.hashGenesisBlock.GetHex() << " Nonce: " << i << " nGenesisTime: " << nGenesisTime << "\n";
                 std::cout << "CHOOSE: BestBlockHash.GetHex(): " << BestBlockHash.GetHex() << " Nonce: " << i << " nGenesisTime: " << nGenesisTime << "\n";
-                std::cout << "CHOOSE: genesis.GetX16RHash().GetHex(): " << genesis.GetX16RHash().GetHex() << " Nonce: " << i << " nGenesisTime: " << nGenesisTime << "\n";
+                std::cout << "CHOOSE: genesis.GetX16RHash().GetHex(): " << genesis.GetHash().GetHex() << " Nonce: " << i << " nGenesisTime: " << nGenesisTime << "\n";
                 std::cout << "CHOOSE: PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
             }
 
@@ -292,7 +292,7 @@ uint32_t nGenesisTime = 1701429301;
         std::cout << "\n";
 
         std::cout << "BestBlockHash.GetHex() to 0x" << BestBlockHash.GetHex() << std::endl;
-        std::cout << "genesis.GetX16RHash().GetHex() to 0x" << genesis.GetX16RHash().GetHex() << std::endl;
+        std::cout << "genesis.GetX16RHash().GetHex() to 0x" << genesis.GetHash().GetHex() << std::endl;
         std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
         std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex() << std::endl;
 
