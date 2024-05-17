@@ -32,6 +32,7 @@
 
 #include <stddef.h>
 #include <string.h>
+#include <limits.h>
 
 #include "sph_blake.h"
 
