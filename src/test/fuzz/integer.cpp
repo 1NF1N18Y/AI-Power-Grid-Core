@@ -8,7 +8,7 @@
 #include <consensus/merkle.h>
 #include <core_io.h>
 #include <crypto/common.h>
-#include <siphash/siphash.h>
+#include <crypto/siphash.h>
 #include <key_io.h>
 #include <memusage.h>
 #include <netbase.h>

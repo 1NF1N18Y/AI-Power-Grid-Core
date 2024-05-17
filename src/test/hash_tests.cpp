@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <clientversion.h>
-#include <siphash/siphash.h>
+#include <crypto/siphash.h>
 #include <hash.h>
 #include <test/util/setup_common.h>
 #include <util/strencodings.h>

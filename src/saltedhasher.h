@@ -7,7 +7,7 @@
 
 #include <hash.h>
 #include <uint256.h>
-#include <siphash/siphash.h>
+#include <crypto/siphash.h>
 
 /** Helper classes for std::unordered_map and std::unordered_set hashing */
 
