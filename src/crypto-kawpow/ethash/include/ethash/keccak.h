@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include <crypto-kawpow/ethash/include/ethash/hash_types.h>
+#include <crypto/ethash/include/ethash/hash_types.h>
 
 #include <stddef.h>
 

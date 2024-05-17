@@ -38,7 +38,7 @@
 #include "algo/gost_streebog.h"
 
 
-#include <crypto-kawpow/ethash/helpers.hpp>
+#include <crypto/ethash/helpers.hpp>
 
 #include <vector>
 
