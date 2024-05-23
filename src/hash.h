@@ -251,6 +251,10 @@ inline int GetHashSelection(const uint256 PrevBlockHash, int index) {
     return(hashSelection);
 }
 
+
+// extern double algoHashTotal[16];
+// extern int algoHashHits[16];
+
 /* ----------- Dash Hash ------------------------------------------------ */
 // template<typename T1>
 // inline uint256 HashX11(const T1 pbegin, const T1 pend)

@@ -67,6 +67,9 @@ file(GLOB SOURCE_FILES
         src/crypto/*.c
         src/crypto/*.cpp
         src/crypto/*.h
+        src/algo/*.c
+        src/algo/*.cpp
+        src/algo/*.h
         src/crypto-X16R/*.c
         src/crypto-X16R/*.cpp
         src/crypto-X16R/*.h
