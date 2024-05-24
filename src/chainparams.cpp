@@ -165,15 +165,15 @@ public:
         strNetworkID = CBaseChainParams::MAIN;
         consensus.nSubsidyHalvingInterval = 210240; // Note: actual number of blocks per calendar year with DGW v3 is ~200700 (for example 449750 - 249050)
         consensus.BIP16Height = 0;
-        consensus.nMasternodePaymentsStartBlock = 1; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
+        consensus.nMasternodePaymentsStartBlock = 20000; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 158000; // actual historical value
         consensus.nMasternodePaymentsIncreasePeriod = 576*30; // 17280 - actual historical value
         consensus.nInstantSendConfirmationsRequired = 6;
         consensus.nInstantSendKeepLock = 24;
-        consensus.nBudgetPaymentsStartBlock = 1; // actual historical value
+        consensus.nBudgetPaymentsStartBlock = 20000; // actual historical value
         consensus.nBudgetPaymentsCycleBlocks = 21900; // ~(60*24*30)/2.6, actual number of blocks per month is 200700 / 12 = 16725
         consensus.nBudgetPaymentsWindowBlocks = 100;
-        consensus.nSuperblockStartBlock = 1; // The block at which 12.1 goes live (end of final 12.0 budget cycle)
+        consensus.nSuperblockStartBlock = 20000; // The block at which 12.1 goes live (end of final 12.0 budget cycle)
         consensus.nSuperblockStartHash = uint256();
         consensus.nSuperblockCycle = 21900; // ~(60*24*30)/2.6, actual number of blocks per month is 200700 / 12 = 16725
         consensus.nSuperblockMaturityWindow = 1662; // ~(60*24*3)/2.6, ~3 days before actual Superblock is emitted
@@ -229,7 +229,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_MN_RR].useEHF = true;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000009134566d753c5e08ab88"); // 2029000
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"); // 2029000
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00000a6a6679f9865f9d545adb58107a4eae437847f0e019b184263fe526185e"); // 0
