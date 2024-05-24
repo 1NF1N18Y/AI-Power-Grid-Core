@@ -75,7 +75,7 @@ class AbandonConflictTest(BitcoinTestFramework):
         inputs.append({"txid": txAB1, "vout": nAB})
         inputs.append({"txid": txC, "vout": nC})
         outputs = {}
-        outputs[self.nodes[0].getnewaddress()] = Decimal("24.9996")
+        outputs[self.nodes[0].getnewaddress()] = Decimal("24.7777")
         signed2 = self.nodes[0].signrawtransactionwithwallet(self.nodes[0].createrawtransaction(inputs, outputs))
         txABC2 = self.nodes[0].sendrawtransaction(signed2["hex"])
 
@@ -146,7 +146,7 @@ class AbandonConflictTest(BitcoinTestFramework):
         # Send child tx again so it is unabandoned
         self.nodes[0].sendrawtransaction(signed2["hex"])
         newbalance = self.nodes[0].getbalance()
-        assert_equal(newbalance, balance - Decimal("10") - Decimal("14.99998") + Decimal("24.9996"))
+        assert_equal(newbalance, balance - Decimal("10") - Decimal("14.99998") + Decimal("24.7777"))
         balance = newbalance
 
         # Remove using high relay fee again
@@ -154,7 +154,7 @@ class AbandonConflictTest(BitcoinTestFramework):
         assert self.nodes[0].getmempoolinfo()['loaded']
         assert_equal(len(self.nodes[0].getrawmempool()), 0)
         newbalance = self.nodes[0].getbalance()
-        assert_equal(newbalance, balance - Decimal("24.9996"))
+        assert_equal(newbalance, balance - Decimal("24.7777"))
         balance = newbalance
 
         self.log.info("Test transactions conflicted by a double spend")
