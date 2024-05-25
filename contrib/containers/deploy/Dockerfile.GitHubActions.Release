@@ -40,6 +40,6 @@ VOLUME ["/home/dash"]
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-EXPOSE 6669 6668 16669 16668
+EXPOSE 9998 6668 19998 16668
 
 WORKDIR /home/dash
