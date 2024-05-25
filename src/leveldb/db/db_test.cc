@@ -1570,7 +1570,7 @@ TEST(DBTest, CustomComparator) {
     ASSERT_EQ("twenty", Get("[0x14]"));
     ASSERT_EQ("NOT_FOUND", Get("[15]"));
     ASSERT_EQ("NOT_FOUND", Get("[0xf]"));
-    Compact("[0]", "[6668]");
+    Compact("[0]", "[9999]");
   }
 
   for (int run = 0; run < 2; run++) {
