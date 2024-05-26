@@ -10,9 +10,9 @@
 #include <iostream>
 #include <chrono>
 #include <attributes.h>
-#include <crypto/common.h>
-#include <crypto/ripemd160.h>
-#include <crypto/sha256.h>
+#include <crypto-X16R/common.h>
+#include <crypto-X16R/ripemd160.h>
+#include <crypto-X16R/sha256.h>
 #include <prevector.h>
 #include <serialize.h>
 #include <uint256.h>
@@ -51,10 +51,12 @@
 #include "algo/sph_tiger.h"
 #include "algo/lyra2.h"
 #include "algo/gost_streebog.h"
+#include <crypto-X16R/ethash/helpers.hpp>
 
 #include <vector>
 
 typedef uint256 ChainCode;
+class CBlockHeader;
 
 /* ----------- Bitcoin Hash ------------------------------------------------- */
 /** A hasher class for Bitcoin's 256-bit hash (double SHA-256). */
@@ -456,6 +458,9 @@ inline uint256 HashX11(const T1 pbegin, const T1 pend, const uint256 PrevBlockHa
 
     return hash[15].trim256();
 }
+
+uint256 KAWPOWHash(const CBlockHeader& blockHeader, uint256& mix_hash);
+uint256 KAWPOWHash_OnlyMix(const CBlockHeader& blockHeader);
 
 
 #endif // BITCOIN_HASH_H

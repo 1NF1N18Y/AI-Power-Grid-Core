@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include <crypto/ethash/include/ethash/hash_types.h>
+#include <crypto-X16R/ethash/include/ethash/hash_types.h>
 
 #include <stdbool.h>
 #include <stdint.h>

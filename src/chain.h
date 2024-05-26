@@ -205,7 +205,10 @@ public:
           hashMerkleRoot{block.hashMerkleRoot},
           nTime{block.nTime},
           nBits{block.nBits},
-          nNonce{block.nNonce}
+          nHeight{block.nHeight}
+          nNonce64{block.nNonce64}
+          mix_hash{block.mix_hash}
+
     {
     }
 
@@ -237,6 +240,9 @@ public:
         block.nTime          = nTime;
         block.nBits          = nBits;
         block.nNonce         = nNonce;
+        block.nHeight        = nHeight;
+        block.nNonce64       = nNonce64;
+        block.mix_hash       = mix_hash;
         return block;
     }
 

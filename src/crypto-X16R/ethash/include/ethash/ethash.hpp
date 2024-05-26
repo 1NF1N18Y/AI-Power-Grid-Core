@@ -14,8 +14,8 @@
 
 #pragma once
 
-#include <crypto/ethash/include/ethash/ethash.h>
-#include <crypto/ethash/include/ethash/hash_types.hpp>
+#include <crypto-X16R/ethash/include/ethash/ethash.h>
+#include <crypto-X16R/ethash/include/ethash/hash_types.hpp>
 
 #include <cstdint>
 #include <cstring>
