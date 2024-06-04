@@ -8,8 +8,8 @@
 #include "bit_manipulation.h"
 #include "endianness.hpp"
 #include "primes.h"
-#include <crypto/ethash/include/ethash/keccak.hpp>
-#include <crypto/ethash/include/ethash/progpow.hpp>
+#include <crypto-X16R/ethash/include/ethash/keccak.hpp>
+#include <crypto-X16R/ethash/include/ethash/progpow.hpp>
 
 #include <cassert>
 #include <cstdlib>

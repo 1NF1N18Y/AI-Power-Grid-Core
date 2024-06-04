@@ -27,7 +27,7 @@
 #include <bip39.h>
 #include <bip39_english.h>
 #include <crypto/pkcs5_pbkdf2_hmac_sha512.h>
-#include <crypto/sha256.h>
+#include <crypto-X16R/sha256.h>
 #include <random.h>
 
 SecureString CMnemonic::Generate(int strength)

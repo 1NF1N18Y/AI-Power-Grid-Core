@@ -11,7 +11,7 @@
 #include <chrono>
 #include <attributes.h>
 #include <crypto-X16R/common.h>
-#include <crypto-X16R/ripemd160.h>
+#include <crypto/ripemd160.h>
 #include <crypto-X16R/sha256.h>
 #include <prevector.h>
 #include <serialize.h>

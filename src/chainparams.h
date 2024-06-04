@@ -95,7 +95,7 @@ public:
     }
     uint16_t GetDefaultPlatformP2PPort() const { return nDefaultPlatformP2PPort; }
     uint16_t GetDefaultPlatformHTTPPort() const { return nDefaultPlatformHTTPPort; }
-
+    uint32_t nKAWPOWActivationBlock;
     const CBlock& GenesisBlock() const { return genesis; }
     const CBlock& DevNetGenesisBlock() const { return devnetGenesis; }
     /** Default value for -checkmempool and -checkblockindex argument */

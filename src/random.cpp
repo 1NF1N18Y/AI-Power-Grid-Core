@@ -6,7 +6,7 @@
 #include <random.h>
 
 #include <compat/cpuid.h>
-#include <crypto/sha256.h>
+#include <crypto-X16R/sha256.h>
 #include <crypto/sha512.h>
 #include <support/cleanse.h>
 #ifdef WIN32

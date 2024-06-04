@@ -9,6 +9,10 @@
 #include <threadsafety.h>
 #include <util/macros.h>
 
+#include <boost/thread/condition_variable.hpp>
+#include <boost/thread/mutex.hpp>
+#include <boost/thread/recursive_mutex.hpp>
+
 #include <condition_variable>
 #include <mutex>
 #include <string>
@@ -383,5 +387,18 @@ struct SCOPED_LOCKABLE LockAssertion
     }
     ~LockAssertion() UNLOCK_FUNCTION() {}
 };
+
+
+
+class CCriticalSection : public AnnotatedMixin<boost::recursive_mutex>
+{
+public:
+    ~CCriticalSection() {
+        DeleteLock((void*)this);
+    }
+};
+
+/** Wrapped boost mutex: supports waiting but not recursive locking */
+typedef AnnotatedMixin<boost::mutex> CWaitableCriticalSection;
 
 #endif // BITCOIN_SYNC_H

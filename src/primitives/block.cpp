@@ -8,10 +8,38 @@
 #include <streams.h>
 #include <tinyformat.h>
 
+uint32_t nKAWPOWActivationBlock = 300;
+
 uint256 CBlockHeader::GetHash() const
 {
     return KAWPOWHash_OnlyMix(*this);
 }
+
+uint256 CBlockHeader::GetX16RHash() const
+{
+    std::vector<unsigned char> vch(80);
+    CVectorWriter ss(SER_GETHASH, PROTOCOL_VERSION, vch, 0);
+    ss << *this;
+    return HashX11((const char *)vch.data(), (const char *)vch.data() + vch.size(), hashPrevBlock);
+}
+
+uint256 CBlockHeader::GetHashFull(uint256& mix_hash) const
+{
+    return KAWPOWHash(*this, mix_hash);
+}
+
+/**
+ * @brief This takes a block header, removes the nNonce64 and the mixHash. Then performs a serialized hash of it SHA256D.
+ * This will be used as the input to the KAAAWWWPOW hashing function
+ * @note Only to be called and used on KAAAWWWPOW block headers
+ */
+uint256 CBlockHeader::GetKAWPOWHeaderHash() const
+{
+    CKAWPOWInput input{*this};
+
+    return SerializeHash(input);
+}
+
 
 std::string CBlock::ToString() const
 {

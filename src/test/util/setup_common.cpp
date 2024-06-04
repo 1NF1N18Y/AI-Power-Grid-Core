@@ -11,7 +11,7 @@
 #include <consensus/params.h>
 #include <consensus/validation.h>
 #include <deploymentstatus.h>
-#include <crypto/sha256.h>
+#include <crypto-X16R/sha256.h>
 #include <flat-database.h>
 #include <governance/governance.h>
 #include <index/txindex.h>

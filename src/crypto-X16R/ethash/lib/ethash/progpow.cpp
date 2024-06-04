@@ -2,13 +2,13 @@
 // Copyright 2018-2019 Pawel Bylica.
 // Licensed under the Apache License, Version 2.0.
 
-#include <crypto/ethash/include/ethash/progpow.hpp>
+#include <crypto-X16R/ethash/include/ethash/progpow.hpp>
 
-#include "crypto/ethash/lib/ethash/bit_manipulation.h"
-#include "crypto/ethash/lib/ethash/endianness.hpp"
-#include "crypto/ethash/lib/ethash/ethash-internal.hpp"
-#include "crypto/ethash/lib/ethash/kiss99.hpp"
-#include <crypto/ethash/include/ethash/keccak.hpp>
+#include "crypto-X16R/ethash/lib/ethash/bit_manipulation.h"
+#include "crypto-X16R/ethash/lib/ethash/endianness.hpp"
+#include "crypto-X16R/ethash/lib/ethash/ethash-internal.hpp"
+#include "crypto-X16R/ethash/lib/ethash/kiss99.hpp"
+#include <crypto-X16R/ethash/include/ethash/keccak.hpp>
 
 #include <array>
 

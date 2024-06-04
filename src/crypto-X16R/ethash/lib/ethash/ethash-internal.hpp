@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <crypto/ethash/include/ethash/ethash.hpp>
+#include <crypto-X16R/ethash/include/ethash/ethash.hpp>
 
 #include "endianness.hpp"
 

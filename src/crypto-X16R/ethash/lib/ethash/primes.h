@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include <crypto/ethash/include/ethash/ethash.h>
+#include <crypto-X16R/ethash/include/ethash/ethash.h>
 
 #ifdef __cplusplus
 extern "C" {

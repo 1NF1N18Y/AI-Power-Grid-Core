@@ -4,7 +4,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "crypto-X16R/ripemd160.h"
+#include "crypto/ripemd160.h"
 
 #include "crypto-X16R/common.h"
 
