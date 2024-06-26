@@ -351,7 +351,8 @@ public:
             }
         };
 
-        nKAWPOWActivationBlock = 300;
+        nKAAAWWWPOWActivationTime = 1688764800;
+        nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
 
         m_assumeutxo_data = MapAssumeutxo{
          // TODO to be specified in a future patch.

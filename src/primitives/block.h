@@ -12,7 +12,7 @@
 #include <uint256.h>
 #include <cstddef>
 #include <type_traits>
-extern uint32_t nKAWPOWActivationBlock;
+extern uint32_t nKAWPOWActivationTime;
 /** Nodes collect new transactions into a block, hash them into a hash tree,
  * and scan through nonce values to make the block's hash satisfy proof-of-work
  * requirements.  When they solve the proof-of-work, they broadcast the block
@@ -41,7 +41,22 @@ public:
         SetNull();
     }
 
-    SERIALIZE_METHODS(CBlockHeader, obj) { READWRITE(obj.nVersion, obj.hashPrevBlock, obj.hashMerkleRoot, obj.nTime, obj.nBits, obj.nNonce64, obj.nHeight, obj.mix_hash); }
+    template <typename Stream, typename Operation>
+    inline void SerializationOp(Stream& s, Operation ser_action, CBlockHeader& obj) {
+        READWRITE(obj.nVersion);
+        READWRITE(obj.hashPrevBlock);
+        READWRITE(obj.hashMerkleRoot);
+        READWRITE(obj.nTime);
+        READWRITE(obj.nBits);
+        if (obj.nTime < nKAWPOWActivationTime) {
+            READWRITE(obj.nNonce);
+        } else {
+            READWRITE(obj.nHeight);
+            READWRITE(obj.nNonce64);
+            READWRITE(obj.mix_hash);
+        }
+    }
+
 
     void SetNull()
     {

@@ -8,11 +8,24 @@
 #include <streams.h>
 #include <tinyformat.h>
 
-uint32_t nKAWPOWActivationBlock = 300;
+
+uint32_t nKAWPOWActivationTime;
 
 uint256 CBlockHeader::GetHash() const
 {
     return KAWPOWHash_OnlyMix(*this);
+}
+
+uint256 CBlockHeader::GetHash() const
+{
+    if (nTime < nKAWPOWActivationTime) {
+        std::vector<unsigned char> vch(80);
+        CVectorWriter ss(SER_GETHASH, PROTOCOL_VERSION, vch, 0);
+        ss << *this;
+        return HashX11((const char *)vch.data(), (const char *)vch.data() + vch.size(), hashPrevBlock);
+    } else {
+        return KAWPOWHash_OnlyMix(*this);
+    }
 }
 
 uint256 CBlockHeader::GetX16RHash() const
