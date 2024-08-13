@@ -292,13 +292,32 @@ public:
         //FindMainNetGenesisBlock(1717416548, 0x20001fff, "main");
         uint32_t nGenesisTime = 1717416548;	
         
-	    genesis = CreateGenesisBlock(nGenesisTime, 608, 0x20001fff, 4, 5000 * COIN);
-        uint256 mix_hash;
-        consensus.hashGenesisBlock = genesis.GetHashFull(mix_hash);
-        genesis.mix_hash = mix_hash;
-        //std::cout << "hashGenesisBlock " << consensus.hashGenesisBlock.GetHex() << std::endl;
-	    assert(consensus.hashGenesisBlock == uint256S("001f28dcfbcdc87106b42b013833f929e050a87ddafae04baf97d9e15e7f0234"));
-        assert(genesis.hashMerkleRoot == uint256S("978a6bdc0038f2590723c4874583aaf8d3f9177711e4eea62e6ce90ec218090c"));
+
+        genesis = CreateGenesisBlock(nGenesisTime, 1242654, 0x1e0ffff0, 1, 10 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+        // calculate main genesis block
+        consensus.hashGenesisBlock = uint256S("0x00");
+        if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
+		std::cout << std::string("Calculating main genesis block...\n");
+            arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
+            uint256 hash;
+            genesis.nNonce = 0;
+            while (UintToArith256(genesis.GetHash()) > hashTarget)
+            {
+                ++genesis.nNonce;
+                if (genesis.nNonce == 0)
+                {
+                    ++genesis.nTime;
+                }
+            }
+            std::cout << "Genesis block found!\n";
+            std::cout << "nonce: " << genesis.nNonce << "\n";
+            std::cout << "time: " << genesis.nTime << "\n";
+            std::cout << "blockhash: " << genesis.GetHash().ToString().c_str() << "\n";
+            std::cout << "merklehash: " << genesis.hashMerkleRoot.ToString().c_str() << "\n";
+        }
+        assert(consensus.hashGenesisBlock == uint256S("0x"));
+        assert(genesis.hashMerkleRoot == uint256S("0x"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
