@@ -290,7 +290,7 @@ public:
         m_assumed_chain_state_size = 1;
 
         //FindMainNetGenesisBlock(1717416548, 0x20001fff, "main");
-        uint32_t nGenesisTime = 1717416548;	
+        uint32_t nGenesisTime = 1723578566;	
         
 
         genesis = CreateGenesisBlock(nGenesisTime, 1242654, 0x1e0ffff0, 1, 10 * COIN);
@@ -370,7 +370,7 @@ public:
             }
         };
 
-        nKAAAWWWPOWActivationTime = 1688764800;
+        nKAAAWWWPOWActivationTime = 1724578706;
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
 
         m_assumeutxo_data = MapAssumeutxo{
