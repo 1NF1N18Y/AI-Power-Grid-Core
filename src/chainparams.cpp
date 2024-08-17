@@ -285,15 +285,15 @@ public:
         m_assumed_blockchain_size = 45;
         m_assumed_chain_state_size = 1;
 
-        //FindMainNetGenesisBlock(1724999567, 0x20001fff, "main");
-        uint32_t nGenesisTime = 1724999567;	
+        //FindMainNetGenesisBlock(1723905114, 0x20001fff, "main");
+        uint32_t nGenesisTime = 1723905114;	
         
-	    genesis = CreateGenesisBlock(nGenesisTime, 1493, 0x20001fff, 4, 5000 * COIN);
+	    genesis = CreateGenesisBlock(nGenesisTime, 3061, 0x20001fff, 4, 5000 * COIN);
         uint256 mix_hash;
         consensus.hashGenesisBlock = genesis.GetHashFull(mix_hash);
         genesis.mix_hash = mix_hash;
         //std::cout << "hashGenesisBlock " << consensus.hashGenesisBlock.GetHex() << std::endl;
-	    assert(consensus.hashGenesisBlock == uint256S("001dbc8fa884a2ea843c48975fad705c8fea608d781ba3e9f917eea56c8cf4f8"));
+	    assert(consensus.hashGenesisBlock == uint256S("000907a4ee235ffb1b1eccb7cc3289ed845b51d312c120c6bd213dce08ef910c"));
         assert(genesis.hashMerkleRoot == uint256S("978a6bdc0038f2590723c4874583aaf8d3f9177711e4eea62e6ce90ec218090c"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
