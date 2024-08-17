@@ -31,7 +31,7 @@ public:
     uint32_t nBits;
     uint32_t nNonce;
 
-    //KAAAWWWPOW data
+    // KAAAWWWPOW data
     uint32_t nHeight;
     uint64_t nNonce64;
     uint256 mix_hash;
@@ -41,22 +41,29 @@ public:
         SetNull();
     }
 
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action, CBlockHeader& obj) {
+    // Use the SERIALIZE_METHODS macro for serialization
+    SERIALIZE_METHODS(CBlockHeader, obj) 
+    { 
+        // Serialize the basic header fields
         READWRITE(obj.nVersion);
         READWRITE(obj.hashPrevBlock);
         READWRITE(obj.hashMerkleRoot);
         READWRITE(obj.nTime);
         READWRITE(obj.nBits);
-        if (obj.nTime < nKAWPOWActivationTime) {
+        
+        // Conditionally serialize additional fields based on nTime
+        if (obj.nTime < 1724978566) {
+            // READWRITE(obj.nHeight);
+            // READWRITE(obj.nNonce64);
+            // READWRITE(obj.mix_hash);
             READWRITE(obj.nNonce);
         } else {
             READWRITE(obj.nHeight);
             READWRITE(obj.nNonce64);
             READWRITE(obj.mix_hash);
+            // READWRITE(obj.nNonce);
         }
     }
-
 
     void SetNull()
     {
@@ -76,6 +83,7 @@ public:
     {
         return (nBits == 0);
     }
+
     uint256 GetHashFull(uint256& mix_hash) const;
     uint256 GetKAWPOWHeaderHash() const;
     uint256 GetHash() const;
@@ -85,6 +93,7 @@ public:
         return (int64_t)nTime;
     }
 };
+
 
 class CompressedHeaderBitField
 {
@@ -252,9 +261,9 @@ public:
         block.nNonce         = nNonce;
 
         // KAWPOW
-        block.nHeight        = nHeight;
-        block.nNonce64       = nNonce64;
-        block.mix_hash       = mix_hash;
+        // block.nHeight        = nHeight;
+        // block.nNonce64       = nNonce64;
+        // block.mix_hash       = mix_hash;
         return block;
     }
 

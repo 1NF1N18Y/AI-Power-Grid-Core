@@ -364,7 +364,7 @@ public:
         READWRITE(obj.hashMerkleRoot);
         READWRITE(obj.nTime);
         READWRITE(obj.nBits);
-        if (obj.nTime < nKAWPOWActivationTime) {
+        if (obj.nTime < 1724978566) {
             READWRITE(obj.nNonce);
         } else {
             //KAWPOW
